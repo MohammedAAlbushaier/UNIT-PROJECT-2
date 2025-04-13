@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Frequently Asked Questions{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="faqAccordion">
+                    <!-- Question 1 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                What is the mission of Quran Care Community?
+                            </button>
+                        </h3>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our mission is to serve humanity through Quran-based initiatives that promote education, social welfare, and spiritual growth, while fostering unity and compassion in the community.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                How can I donate to QCC?
+                            </button>
+                        </h3>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can donate through our website by visiting the <a href="{% url 'donate' %}">Donate page</a>. We accept various payment methods including credit cards, bank transfers, and online payment systems.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                Are my donations tax-deductible?
+                            </button>
+                        </h3>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, all donations to Quran Care Community are tax-deductible to the extent allowed by law. You will receive a receipt for your donation which you can use for tax purposes.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                How can I volunteer with QCC?
+                            </button>
+                        </h3>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We welcome volunteers! Please visit our office or contact us through the <a href="{% url 'contact' %}">Contact page</a> to learn about current volunteer opportunities. You can also sign up for our volunteer newsletter.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                How can I stay updated on QCC activities?
+                            </button>
+                        </h3>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can stay updated by:
+                                <ul>
+                                    <li>Subscribing to our newsletter</li>
+                                    <li>Following us on social media</li>
+                                    <li>Regularly visiting our website</li>
+                                    <li>Attending our community events</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <p>Didn't find your question? <a href="{% url 'contact' %}">Contact us</a> directly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

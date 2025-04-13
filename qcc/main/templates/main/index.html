@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-light p-5 rounded mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4">Welcome to Quran Care Center</h1>
+            <p class="lead">Join us to build a more prosperous nation, where every citizen finds what he or she desires.
+                For the future of our nation, which we are building together, we will not accept anything less than
+                placing it at the forefront of the world's nations.</p>
+            <a href="{% url 'donate' %}" class="btn btn-primary btn-lg">Donate Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="/static/images/qcc-hero.jpg" alt="QCC Hero Image" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+
+<section class="campaigns-section mb-5">
+    <h2 class="mb-4">Latest Campaigns</h2>
+    <div class="row">
+        {% for campaign in campaigns %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ campaign.featured_image.url }}" class="card-img-top" alt="{{ campaign.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ campaign.title }}</h5>
+                    <p class="card-text">{{ campaign.description|truncatewords:20 }}</p>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar"
+                             style="width: {{ campaign.progress_percentage }}%;"
+                             aria-valuenow="{{ campaign.progress_percentage }}"
+                             aria-valuemin="0"
+                             aria-valuemax="100">
+                            {{ campaign.progress_percentage|floatformat:0 }}%
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Raised: {{ campaign.current_amount }}</span>
+                        <span>Goal: {{ campaign.goal_amount }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>{{ campaign.days_left }} days left</span>
+                        <a href="{% url 'campaign_detail' campaign.pk %}" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <a href="{% url 'campaigns' %}" class="btn btn-primary">View All Campaigns</a>
+    </div>
+</section>
+
+<section class="accomplishments-section">
+    <h2 class="mb-4">Our Accomplishments</h2>
+    <div class="row">
+        {% for accomplishment in accomplishments %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if accomplishment.image %}
+                <img src="{{ accomplishment.image.url }}" class="card-img-top" alt="{{ accomplishment.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ accomplishment.title }}</h5>
+                    <p class="card-text">{{ accomplishment.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Achieved on {{ accomplishment.date }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

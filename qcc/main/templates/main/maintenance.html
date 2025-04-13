@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Maintenance Mode{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h1 class="display-4">Maintenance Mode</h1>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <i class="bi bi-gear" style="font-size: 4rem; color: #fd7e14;"></i>
+                </div>
+                <h2 class="card-title">Website Under Maintenance</h2>
+                <p class="card-text">We're currently performing scheduled maintenance to improve our services. The website will be back online shortly.</p>
+
+                <div class="alert alert-info mt-4">
+                    <h5>Estimated Completion Time</h5>
+                    <p>{% now "F j, Y" %} - 11:00 PM (UTC+3)</p>
+                </div>
+
+                <div class="mt-4">
+                    <p>We apologize for any inconvenience and appreciate your patience.</p>
+                    <p>For urgent matters, please contact us at <a href="mailto:support@qcc.org">support@qcc.org</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

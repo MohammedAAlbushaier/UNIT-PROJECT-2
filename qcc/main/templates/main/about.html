@@ -1,0 +1,569 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Us - Quran Care Community{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* About Page Styles */
+    .about-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .about-section h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .about-section h1:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: #0d6efd;
+    }
+
+    .section-header {
+        text-align: center;
+        margin: 3rem 0 2rem;
+        color: #2c3e50;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    .section-header:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #0d6efd;
+    }
+
+    /* Message Sections */
+    .message-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .message-section h2 {
+        color: #0d6efd;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .message-content {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .message-content img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .message-text {
+        flex: 1;
+        font-style: italic;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+        padding: 1rem;
+        border-left: 3px solid #0d6efd;
+    }
+
+    /* Founders Section */
+    .founders-section {
+        margin: 4rem 0;
+    }
+
+    .founders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .founder-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .founder-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .founder-card img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem;
+        border: 5px solid #f8f9fa;
+    }
+
+    .founder-card h3 {
+        color: #2c3e50;
+        margin: 1rem 0 0.5rem;
+    }
+
+    .founder-card p {
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    /* Establishment Section */
+    .establishment {
+        background: #f8f9fa;
+        padding: 2.5rem;
+        border-radius: 10px;
+        margin: 3rem 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .establishment p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    /* Vision & Mission */
+    .vision-mission {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .vm-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-top: 5px solid #0d6efd;
+    }
+
+    .vm-card h3 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .vm-card p, .vm-card ul {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .vm-card ul {
+        padding-left: 1.5rem;
+    }
+
+    .vm-card li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Goals Section */
+    .goals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .goal-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .goal-card h3 {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        border-bottom: 2px solid #f8f9fa;
+        padding-bottom: 0.5rem;
+    }
+
+    .goal-card ul {
+        padding-left: 1.5rem;
+    }
+
+    .goal-card li {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: #555;
+        position: relative;
+    }
+
+    .goal-card li:before {
+        content: '•';
+        color: #0d6efd;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .gallery-item {
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.03);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Process Steps */
+    .process-steps {
+        margin: 3rem 0;
+        position: relative;
+        padding-left: 50px;
+    }
+
+    .process-steps:before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #0d6efd;
+        border-radius: 2px;
+    }
+
+    .step {
+        position: relative;
+        margin-bottom: 3rem;
+    }
+
+    .step-number {
+        position: absolute;
+        left: -50px;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #0d6efd;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        box-shadow: 0 0 0 5px rgba(13, 110, 253, 0.2);
+    }
+
+    .step-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .step-content h3 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .step-content p, .step-content ol {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .step-content ol {
+        padding-left: 1.5rem;
+    }
+
+    .step-content li {
+        margin-bottom: 0.8rem;
+    }
+
+    /* Conclusion */
+    .conclusion {
+        background: #f8f9fa;
+        padding: 2.5rem;
+        border-radius: 10px;
+        margin: 3rem 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .conclusion h2 {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .conclusion p {
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .message-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .message-text {
+            border-left: none;
+            border-top: 3px solid #0d6efd;
+            padding-left: 0;
+            padding-top: 1rem;
+        }
+
+        .process-steps {
+            padding-left: 30px;
+        }
+
+        .step-number {
+            left: -30px;
+            width: 30px;
+            height: 30px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-section">
+    <h1>About Quran Care Community</h1>
+
+    <!-- Leadership Messages -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="message-section">
+                <h2>Message from King Salman</h2>
+                <div class="message-content">
+                    <img src="{% static 'images/king_salman.png' %}" alt="King Salman">
+                    <div class="message-text">
+                        <p><br/>"God honored the Arabs by revealing the Holy Qur'an in their language, thus honoring this
+                            language beyond all honor, and increasing its strength and presence."<br/><br/><br/><br/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="message-section">
+                <h2>Message from Crown Prince Mohammed bin Salman</h2>
+                <div class="message-content">
+                    <img src="{% static 'images/mbs.png' %}" alt="Prince Mohammed bin Salman">
+                    <div class="message-text">
+                        <p>"Our ambition is to build a more prosperous nation, where every citizen finds what he or she desires. For the future of our nation, which we are building together, we will not accept anything less than placing it at the forefront of the world's nations."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Founders Section -->
+    <section class="founders-section">
+        <h2 class="section-header">Our Founders</h2>
+        <div class="founders-grid">
+            <div class="founder-card">
+                <img src="{% static 'images/founder1.jpg' %}" alt="Founder 1">
+                <h3>Dr. Muhammad bin Hassan Al-Jaber</h3>
+                <p>- may God have mercy on him -</p>
+            </div>
+            <div class="founder-card">
+                <img src="{% static 'images/founder2.jpg' %}" alt="Founder 2">
+                <h3>Sheikh Khalid bin Muhammad Al-Maghribi</h3>
+                <p>- may God have mercy on him -</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Establishment Section -->
+    <section class="establishment">
+        <h2 class="section-header">Our History</h2>
+        <p>God honored the Arabs by choosing from among them His Prophet Muhammad (peace and blessings be upon him) to be the Seal of the Prophets. He then honored the Arabian Peninsula by revealing His clear Book and guidance to the worlds on its soil.</p>
+        <p>The Kingdom of Saudi Arabia was honored to bear the responsibility of caring for the Book of God, preserving it, serving it, printing it, and publishing it. It established the King Fahd Complex for the Printing of the Holy Qur'an, which is considered the greatest institution for preserving, serving, and publishing the Qur'an in the history of Islam.</p>
+        <p>One of the fruits of this assignment and honor was that the people of goodness and the Qur'an in Ahsa, the center of knowledge and scholars, called upon one of the doors of honor to serve the Qur'an and care for the worn-out Qur'ans, as they are passed around by thousands of hands over the years, to gain the reward of recitation and memorization, which requires their maintenance, renewal, and redistribution.</p>
+        <p>Thus, the establishment of the "His Excellency Dr. Muhammad bin Hassan Al-Jaber Center for the Care of the Qur'an in Al-Ahsa" was established by His Eminence Sheikh Khalid bin Muhammad Al-Maghribi - may God have mercy on him - in the month of Ramadan in the year 1427 AH, under the umbrella of the Qur'an Memorization Association in Al-Ahsa (Khair), and with the support and thanks for its establishment from the Governorate of Al-Ahsa.</p>
+        <p>In 1446/2/1 AH - AD, the Care Association was established in Al-Ahsa, authorized under the supervisory authority of the Ministry of Islamic Affairs.</p>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section>
+        <h2 class="section-header">Our Core</h2>
+        <div class="vision-mission">
+            <div class="vm-card">
+                <h3>Our Vision</h3>
+                <p>Leadership and excellence in caring for the Book of God so that the Qur'an will be a source of reverence in everyone's hearts.</p>
+            </div>
+            <div class="vm-card">
+                <h3>Our Mission</h3>
+                <p>The Al-Ahsa Holy Qur'an Care Association seeks to achieve leadership in preserving and protecting the Book of God from damage and to contribute to spreading the culture of glorifying the Book of God Almighty.</p>
+            </div>
+            <div class="vm-card">
+                <h3>Our Values</h3>
+                <ul>
+                    <li>Excellence</li>
+                    <li>Mastery</li>
+                    <li>Commitment</li>
+                    <li>Initiative</li>
+                    <li>Teamwork</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals">
+        <h2 class="section-header">Strategic Objectives</h2>
+        <div class="goals-grid">
+            <div class="goal-card">
+                <h3>Strategic Goals</h3>
+                <ul>
+                    <li>Establishing and magnifying the Book of God in the souls of Muslims and preserving it from being disrespected</li>
+                    <li>Collection of used Qurans that need restoration</li>
+                    <li>Restoring and repairing used Qur'ans in accordance with the technical requirements regulating this</li>
+                    <li>Distributing restored copies of the Qur'an in accordance with the terms and conditions governing this</li>
+                    <li>Using modern technology in the process of restoring used Qurans</li>
+                    <li>Using high-quality materials in the restoration process of used Qur'ans</li>
+                    <li>Technical qualification for workers and supervisors in the activity of restoring used Qur'ans</li>
+                    <li>Destroying used copies of the Qur'an that are not suitable for restoration</li>
+                </ul>
+            </div>
+            <div class="goal-card">
+                <h3>Sub-Goals</h3>
+                <ul>
+                    <li>Strengthening the mental image of preserving the Book of God</li>
+                    <li>Effective contribution to protecting it from abuse</li>
+                    <li>Maximizing the impact of support</li>
+                    <li>Identifying stakeholders' needs</li>
+                    <li>Creating programs and activities for collecting used copies of the Qur'an</li>
+                    <li>Institutional excellence</li>
+                    <li>Strategic partnerships</li>
+                    <li>Raising the level of technical and administrative skills of our employees</li>
+                    <li>Improving employee quality</li>
+                    <li>Improving the work environment</li>
+                    <li>Increase financial resources</li>
+                    <li>Financial sustainability for our employees</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2 class="section-header">Our Facilities</h2>
+        <div class="gallery-grid">
+            {% for i in "1345" %}
+            <div class="gallery-item">
+                <img src="{% static 'images/building_'|add:i|add:'.png' %}" alt="QCC Building {{ i }}">
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section>
+        <h2 class="section-header">Our Distribution Process</h2>
+
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Collecting The Qur'an</h3>
+                    <p>Where the copies of the Qur'an that need care are collected from the mosques of the governorate's cities and villages, from Qur'an memorization circles, and from schools.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Care and Maintenance</h3>
+                    <ol>
+                        <li>Receiving the collected copies of the Qur'an and storing them in the warehouse</li>
+                        <li>Sorting and classifying them according to their needs</li>
+                        <li>Inspecting the copies, removing any writing, and ensuring their cleanliness</li>
+                        <li>Replacing damaged pages with intact ones</li>
+                        <li>Re-weaving and packaging</li>
+                        <li>Arranging the preserved copies of the Qur'an in boxes, in preparation for distribution</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Distribution</h3>
+                    <p>Our organization redistributes the renewed copies of the Qur'an to the entities that are most in need of them and benefit from them - inside and outside the Kingdom - including mosques, prayer halls, and memorization circles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accomplishments -->
+    <section class="conclusion">
+        <h2 class="section-header">Our Accomplishments</h2>
+        <div class="text-center mb-4">
+            <div class="display-4 text-primary" style="font-weight: 700;">92,000+</div>
+            <p class="lead">Holy Qur'ans distributed worldwide since 2020</p>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="conclusion">
+        <h2 class="section-header">Conclusion</h2>
+        <p>In conclusion: Praise be to God, first and last, for what He has granted us success and assistance in, and then thanks to the leadership of this blessed nation, under the leadership of the Custodian of the Two Holy Mosques and His Highness the Crown Prince, may God protect them.</p>
+        <p>Also, His Highness the Prince of the Eastern Province, Prince Saud bin Nayef bin Abdulaziz, His Highness the Deputy Prince of the Eastern Province, Prince Saud bin Bandar bin Abdulaziz, and His Highness the Governor of Al-Ahsa, Prince Saud bin Talal bin Badr, may God protect them, we owe them our thanks and gratitude for their care and support.</p>
+        <p>Prayers are extended to the generous benefactors from among the notables and families of Al-Ahsa, and to everyone who supported this blessed project with money, effort, advice, or prayers.</p>
+    </section>
+
+    <!-- Commitment -->
+    <section class="conclusion">
+        <h2 class="section-header">Our Commitment</h2>
+        <p>We are committed to upholding the highest standards in preserving and distributing the Holy Qur'an, ensuring that every copy we handle is treated with the utmost respect and care. Our team of dedicated professionals works tirelessly to maintain the quality and integrity of this sacred text, while expanding our reach to serve communities around the world.</p>
+        <p class="text-center mt-4">
+            <a href="{% url 'campaigns' %}" class="btn btn-primary btn-lg">Support Our Mission</a>
+        </p>
+    </section>
+</div>
+{% endblock %}

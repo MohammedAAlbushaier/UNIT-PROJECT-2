@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Delete Campaign{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h2>Delete Campaign</h2>
+            </div>
+            <div class="card-body">
+                <p>Are you sure you want to delete "{{ campaign.title }}"?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                        <a href="{% url 'campaign_detail' campaign.pk %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

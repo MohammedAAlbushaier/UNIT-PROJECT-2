@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Coming Soon{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
+                <h1 class="display-4">Coming Soon</h1>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <i class="bi bi-tools" style="font-size: 4rem; color: #0d6efd;"></i>
+                </div>
+                <h2 class="card-title">This Page is Under Construction</h2>
+                <p class="card-text">We're working hard to bring you this new feature. Please check back later!</p>
+
+                <div class="progress mt-4 mb-4" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75% Complete</div>
+                </div>
+
+                <div class="mt-4">
+                    <p>Want to be notified when this page is ready?</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-auto">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Notify Me</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

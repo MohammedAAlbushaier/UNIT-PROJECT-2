@@ -1,0 +1,194 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Progress Bars */
+.progress {
+    height: 20px;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    background-color: #0d6efd;
+    border-radius: 10px;
+}
+
+/* Forms */
+.form-control, .form-select {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 0.375rem;
+    padding: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: #212529;
+    color: white;
+}
+
+footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section .col-md-6 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+}
+
+/* Custom Utilities */
+.rounded-start {
+    border-top-left-radius: 0.375rem !important;
+    border-bottom-left-radius: 0.375rem !important;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+/* Campaign Progress */
+.campaign-progress {
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Donation Form */
+.donation-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Profile Page */
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+/* About Page */
+.message-card {
+    min-height: 200px;
+}
+
+.founder-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Accordion */
+.accordion-button:not(.collapsed) {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+/* Profile Page Styles */
+.profile-card {
+    margin-bottom: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.profile-card .card-header {
+    font-weight: 600;
+}
+
+.donation-table {
+    font-size: 0.9rem;
+}
+
+.donation-table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.campaign-card .progress {
+    height: 8px;
+}
+
+/* Payment Success Styles */
+.payment-success-icon {
+    font-size: 5rem;
+    color: #28a745;
+}
+
+.donation-details {
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}

@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2>Contact Information</h2>
+            </div>
+            <div class="card-body">
+                <h4><i class="bi bi-geo-alt"></i> Address</h4>
+                <p>123 Islamic Street<br>Riyadh, Saudi Arabia<br>Postal Code: 12345</p>
+
+                <h4 class="mt-4"><i class="bi bi-telephone"></i> Phone</h4>
+                <p>+966 12 345 6789</p>
+
+                <h4 class="mt-4"><i class="bi bi-envelope"></i> Email</h4>
+                <p>info@qcc.org</p>
+
+                <h4 class="mt-4"><i class="bi bi-clock"></i> Working Hours</h4>
+                <p>Sunday - Thursday: 8:00 AM - 4:00 PM</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2>Visit Us</h2>
+            </div>
+            <div class="card-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.783234602031!2d46.67227631500287!3d24.8138379840768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee3a9ae98e8d1%3A0x5e81a5f2a0e3b1a8!2sRiyadh!5e0!3m2!1sen!2ssa!4v1620000000000!5m2!1sen!2ssa"
+                            style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2>Send Us a Message</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

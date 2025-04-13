@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ campaign.title }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h1>{{ campaign.title }}</h1>
+        <p class="lead">{{ campaign.description }}</p>
+
+        <div class="progress mb-3" style="height: 30px;">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{ campaign.progress_percentage }}%;"
+                 aria-valuenow="{{ campaign.progress_percentage }}"
+                 aria-valuemin="0"
+                 aria-valuemax="100">
+                {{ campaign.progress_percentage|floatformat:0 }}%
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Raised</h5>
+                        <p class="card-text display-6">{{ campaign.current_amount }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Goal</h5>
+                        <p class="card-text display-6">{{ campaign.goal_amount }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Campaign Details</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Status:</span>
+                        <span class="badge bg-{% if campaign.is_active %}success{% else %}secondary{% endif %}">
+                            {% if campaign.is_active %}Active{% else %}Completed{% endif %}
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Start Date:</span>
+                        <span>{{ campaign.start_date|date:"F j, Y" }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>End Date:</span>
+                        <span>{{ campaign.end_date|date:"F j, Y" }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Days Left:</span>
+                        <span>{{ campaign.days_left }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {% if images|length > 1 %}
+        <h3>Gallery</h3>
+        <div class="row mb-4">
+            {% for image in images %}
+            <div class="col-md-4 mb-3">
+                <img src="{{ image.image.url }}" class="img-fluid rounded" alt="Campaign Image">
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Donate Now</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-100">Make Donation</button>
+                </form>
+            </div>
+        </div>
+
+        {% if donations %}
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3 class="card-title">Recent Donations</h3>
+                <div class="list-group">
+                    {% for donation in donations|slice:":5" %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <span>
+                                {% if donation.anonymous %}
+                                    Anonymous
+                                {% else %}
+                                    {% if donation.donor %}
+                                        {{ donation.donor.first_name }}
+                                    {% else %}
+                                        Guest
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                            <span>{{ donation.amount }}</span>
+                        </div>
+                        {% if donation.message %}
+                        <small class="text-muted">{{ donation.message|truncatewords:5 }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if donations|length > 5 %}
+                <a href="#" class="btn btn-sm btn-outline-primary mt-2">View All</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
